@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analizador Carreras — Uber · DiDi · InDrive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --verde:  #00C853;
+    --verde2: #00E676;
+    --gris1:  #0D0F14;
+    --gris2:  #151820;
+    --gris3:  #1C2030;
+    --texto:  #E8EAF0;
+    --dim:    #6B7280;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gris1);
+    color: var(--texto);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--gris2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #252A3A;
+  }
+  .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--verde2); }
+  .nav-btn {
+    background: var(--verde);
+    color: #001F0F;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+  .nav-btn:hover { filter: brightness(1.1); }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 64px 24px 48px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,200,83,0.15);
+    color: var(--verde2);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1px solid rgba(0,200,83,0.3);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--verde2); }
+  .hero p {
+    color: var(--dim);
+    font-size: 1rem;
+    margin-bottom: 32px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--verde);
+    color: #001F0F;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: filter 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: var(--gris3);
+    color: var(--texto);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 14px 28px;
+    border: 1px solid #252A3A;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-secondary:hover { background: #252A3A; }
+
+  /* ── PLATAFORMAS ── */
+  .plataformas {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 24px 48px;
+    flex-wrap: wrap;
+  }
+  .plat-badge {
+    background: var(--gris2);
+    border: 1px solid #252A3A;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--dim);
+    font-weight: 500;
+  }
+
+  /* ── SCREENSHOT ── */
+  .screenshot-section {
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 64px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .phone-mock {
+    background: var(--gris2);
+    border: 1px solid #252A3A;
+    border-radius: 20px;
+    padding: 24px 20px;
+    width: 200px;
+    text-align: center;
+  }
+  .overlay-demo {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .overlay-bar-green { height: 5px; background: #00E676; }
+  .overlay-bar-yellow { height: 5px; background: #FFD600; }
+  .overlay-bar-red { height: 5px; background: #FF1744; }
+  .overlay-body {
+    padding: 12px;
+    text-align: left;
+  }
+  .overlay-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .overlay-title.green { color: #2E7D32; }
+  .overlay-title.yellow { color: #E65100; }
+  .overlay-title.red { color: #C62828; }
+  .overlay-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    margin-bottom: 3px;
+    color: #757575;
+  }
+  .overlay-row span:last-child {
+    font-weight: 700;
+    color: #212121;
+  }
+  .phone-label {
+    font-size: 0.75rem;
+    color: var(--dim);
+  }
+
+  /* ── FEATURES ── */
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+  }
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .section-sub {
+    color: var(--dim);
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 0.95rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .feature-card {
+    background: var(--gris2);
+    border: 1px solid #252A3A;
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+  .feature-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .feature-desc {
+    font-size: 0.82rem;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+
+  /* ── PASOS ── */
+  .steps {
+    counter-reset: step;
+  }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    background: var(--verde);
+    color: #001F0F;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+  }
+  .step-content h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .step-content p {
+    font-size: 0.85rem;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+  .step-content code {
+    background: var(--gris3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--verde2);
+  }
+
+  /* ── PRECIOS ── */
+  .precios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .precio-card {
+    background: var(--gris2);
+    border: 1px solid #252A3A;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+  .precio-card.destacado {
+    border-color: var(--verde);
+    background: #0D2818;
+  }
+  .precio-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--verde);
+    color: #001F0F;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .precio-periodo {
+    font-size: 0.8rem;
+    color: var(--dim);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .precio-valor {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--verde2);
+    margin-bottom: 4px;
+  }
+  .precio-sub {
+    font-size: 0.72rem;
+    color: var(--dim);
+  }
+  .precio-ahorro {
+    font-size: 0.72rem;
+    color: var(--verde);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .precio-prueba {
+    text-align: center;
+    padding: 12px;
+    background: rgba(0,200,83,0.08);
+    border: 1px solid rgba(0,200,83,0.2);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: var(--verde2);
+    font-weight: 600;
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border-bottom: 1px solid #252A3A;
+    padding: 16px 0;
+  }
+  .faq-q {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .faq-a {
+    font-size: 0.85rem;
+    color: var(--dim);
+    line-height: 1.6;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta {
+    text-align: center;
+    padding: 48px 24px 64px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .cta h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .cta p {
+    color: var(--dim);
+    margin-bottom: 24px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--gris2);
+    border-top: 1px solid #252A3A;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.8rem;
+    color: var(--dim);
+  }
+
+  /* ── ADVERTENCIA APK ── */
+  .apk-warning {
+    background: #1A1200;
+    border: 1px solid #F57F17;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: #FFB300;
+    line-height: 1.5;
+  }
+  .apk-warning strong { color: #FFD600; }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.6rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🚗 Analizador <span>Carreras</span></div>
+  <a href="#descargar" class="nav-btn">📲 Descargar</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🚀 DISPONIBLE AHORA · VERSIÓN 1.0</div>
+  <h1>Analiza cada carrera<br><span>antes de aceptarla</span></h1>
+  <p>La app que te dice en segundos si una carrera vale la pena — basado en tu meta de ganancias por hora y tarifa por km.</p>
+  <div class="hero-btns">
+    <a href="#descargar" class="btn-primary">📲 Descargar APK gratis</a>
+    <a href="#como-funciona" class="btn-secondary">▶ Cómo funciona</a>
+  </div>
+</div>
+
+<!-- PLATAFORMAS -->
+<div class="plataformas">
+  <div class="plat-badge">✅ Uber</div>
+  <div class="plat-badge">✅ DiDi</div>
+  <div class="plat-badge">✅ InDrive</div>
+  <div class="plat-badge">📱 Android</div>
+  <div class="plat-badge">⚡ Análisis en 2 segundos</div>
+</div>
+
+<!-- DEMO OVERLAYS -->
+<div class="screenshot-section">
+
+  <div class="phone-mock">
+    <div class="overlay-demo">
+      <div class="overlay-bar-green"></div>
+      <div class="overlay-body">
+        <div class="overlay-title green">✅ ACEPTA</div>
+        <div class="overlay-row"><span>$/km</span><span style="color:#2E7D32">$1.946/km</span></div>
+        <div class="overlay-row"><span>$/hora</span><span style="color:#2E7D32">$46.700/h</span></div>
+      </div>
+    </div>
+    <div class="phone-label">Carrera excelente 🟢</div>
+  </div>
+
+  <div class="phone-mock">
+    <div class="overlay-demo">
+      <div class="overlay-bar-yellow"></div>
+      <div class="overlay-body">
+        <div class="overlay-title yellow">🟡 CONSIDERA</div>
+        <div class="overlay-row"><span>$/km</span><span style="color:#E65100">$1.226/km</span></div>
+        <div class="overlay-row"><span>$/hora</span><span style="color:#E65100">$24.030/h</span></div>
+        <div class="overlay-row"><span>Neto (-11%)</span><span>$12.015</span></div>
+        <div class="overlay-row"><span>💡 Pide</span><span style="color:#E65100">COL$14.500</span></div>
+      </div>
+    </div>
+    <div class="phone-label">InDrive con sugerencia 🟡</div>
+  </div>
+
+  <div class="phone-mock">
+    <div class="overlay-demo">
+      <div class="overlay-bar-red"></div>
+      <div class="overlay-body">
+        <div class="overlay-title red">❌ RECHAZA</div>
+        <div class="overlay-row"><span>$/km</span><span style="color:#C62828">$718/km</span></div>
+        <div class="overlay-row"><span>$/hora</span><span style="color:#C62828">$11.200/h</span></div>
+      </div>
+    </div>
+    <div class="phone-label">Carrera mala 🔴</div>
+  </div>
+
+</div>
+
+<!-- FEATURES -->
+<div class="section" id="como-funciona">
+  <h2 class="section-title">¿Qué hace la app?</h2>
+  <p class="section-sub">Analiza la pantalla de Uber, DiDi o InDrive automáticamente y te dice si la carrera vale la pena.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Análisis instantáneo</div>
+      <div class="feature-desc">Lee la pantalla automáticamente y muestra el resultado en 2 segundos — sin tocar nada.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Tarifa por km real</div>
+      <div class="feature-desc">Calcula la tarifa incluyendo el km que recorres para recoger al pasajero — no solo el viaje.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-title">Tu meta por hora</div>
+      <div class="feature-desc">Configura cuánto quieres ganar por hora y la app te avisa si la carrera cumple o no.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <div class="feature-title">Sugerencia InDrive</div>
+      <div class="feature-desc">Para InDrive calcula cuánto debes pedir para cumplir tu meta, descontando la comisión del 11%.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚫</div>
+      <div class="feature-title">Zonas prohibidas</div>
+      <div class="feature-desc">Configura zonas peligrosas o de baja demanda — la app rechaza automáticamente esas carreras.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚙️</div>
+      <div class="feature-title">100% configurable</div>
+      <div class="feature-desc">Ajusta tarifas mínimas, meta por hora, zonas preferidas en mañana y tarde/noche.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CÓMO INSTALAR -->
+<div class="section" id="descargar">
+  <h2 class="section-title">Cómo instalar</h2>
+  <p class="section-sub">La app no está en Play Store — se instala directamente en 3 pasos.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Descarga el APK</h3>
+        <p>Presiona el botón de descarga. El archivo <code>.apk</code> se guardará en tu carpeta de Descargas.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Permite instalar fuentes desconocidas</h3>
+        <p>Android pedirá permiso para instalar apps de fuentes externas. Acepta → instala el archivo APK desde Descargas.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Activa los permisos en la app</h3>
+        <p>Al abrir la app, activa el <strong>Overlay</strong> (ventana flotante). Luego presiona <strong>Iniciar Análisis</strong> y acepta el permiso de captura de pantalla.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Abre Uber, DiDi o InDrive</h3>
+        <p>Cuando llegue una solicitud, el análisis aparece automáticamente en la esquina superior de la pantalla.</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="AnalizadorCarreras.apk" class="btn-primary"
+     style="width:100%;justify-content:center;margin-top:24px;font-size:1rem;">
+    📲 Descargar APK — Analizador Carreras v1.0
+  </a>
+
+  <div class="apk-warning">
+    <strong>⚠️ Nota de seguridad:</strong> Android mostrará una advertencia al instalar porque la app no está en Play Store. Esto es normal para apps que se distribuyen directamente. La app <strong>no accede a tus datos personales</strong> — solo lee la pantalla para detectar solicitudes de carreras.
+  </div>
+</div>
+
+<!-- PRECIOS -->
+<div class="section" id="precios">
+  <h2 class="section-title">Planes</h2>
+  <p class="section-sub">Comienza gratis 3 días — sin tarjeta ni registro.</p>
+
+  <div class="precios-grid">
+    <div class="precio-card">
+      <div class="precio-periodo">1 Mes</div>
+      <div class="precio-valor">$17.000</div>
+      <div class="precio-sub">COP / mes</div>
+    </div>
+    <div class="precio-card">
+      <div class="precio-periodo">2 Meses</div>
+      <div class="precio-valor">$32.000</div>
+      <div class="precio-sub">$16.000/mes</div>
+      <div class="precio-ahorro">Ahorras $2.000 💛</div>
+    </div>
+    <div class="precio-card destacado">
+      <div class="precio-badge">⭐ MEJOR PRECIO</div>
+      <div class="precio-periodo">3 Meses</div>
+      <div class="precio-valor">$40.000</div>
+      <div class="precio-sub">$13.333/mes</div>
+      <div class="precio-ahorro">Ahorras $11.000 🎉</div>
+    </div>
+  </div>
+
+  <div class="precio-prueba">
+    🟡 3 días de prueba gratuita — sin pagar nada
+  </div>
+
+  <div style="background:var(--gris2);border:1px solid #252A3A;
+              border-radius:14px;padding:20px;margin-top:20px;">
+    <h3 style="font-size:0.95rem;margin-bottom:12px;">
+      💳 Cómo pagar
+    </h3>
+    <p style="font-size:0.85rem;color:var(--dim);line-height:1.6;">
+      1. Paga al <strong style="color:var(--texto)">Nequi o Llave: 3006972596</strong><br>
+      2. Envía el comprobante al <strong style="color:#25D366">WhatsApp: 3006972596</strong><br>
+      3. Recibes tu código de activación y lo ingresas en la app
+    </p>
+    <a href="https://wa.me/573006972596?text=Hola!%20Quiero%20activar%20el%20Analizador%20de%20Carreras."
+       style="display:inline-block;margin-top:12px;background:#25D366;
+              color:#001F0F;font-weight:700;padding:10px 20px;
+              border-radius:8px;text-decoration:none;font-size:0.85rem;">
+      💬 Contactar por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2 class="section-title">Preguntas frecuentes</h2>
+  <p class="section-sub" style="margin-bottom:20px;"></p>
+
+  <div class="faq-item">
+    <div class="faq-q">¿Funciona con Uber, DiDi e InDrive al mismo tiempo?</div>
+    <div class="faq-a">Sí. La app detecta automáticamente cuál plataforma está al frente y analiza esa carrera. Puedes tener las tres apps abiertas.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿La app puede ver mis datos personales o contraseñas?</div>
+    <div class="faq-a">No. La app solo captura la pantalla para leer los datos de la solicitud de carrera (valor, distancia, tiempo). No accede a contraseñas, mensajes ni información bancaria.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Consume mucha batería?</div>
+    <div class="faq-a">La captura de pantalla consume algo de batería. Se recomienda conectar el celular al cargador del moto mientras trabajas.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Qué pasa si desinstalo y reinstalo la app?</div>
+    <div class="faq-a">Tu período de prueba no se reinicia. La app usa el ID único de tu dispositivo guardado en la nube para rastrear el tiempo de prueba.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿En qué celulares funciona?</div>
+    <div class="faq-a">Android 8.0 o superior. No disponible para iPhone.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">¿Cómo cancelo la suscripción?</div>
+    <div class="faq-a">Simplemente no renuevas. No hay cobros automáticos — cada mes pagas manualmente si quieres continuar.</div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta">
+  <h2>Empieza gratis hoy 🚀</h2>
+  <p>3 días de prueba gratuita. Sin tarjeta, sin registro.</p>
+  <a href="AnalizadorCarreras.apk" class="btn-primary"
+     style="font-size:1rem;">
+    📲 Descargar APK gratis
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:6px;">🚗 Analizador Carreras · Uber · DiDi · InDrive</p>
+  <p>Soporte: <a href="https://wa.me/573006972596"
+     style="color:var(--verde2);text-decoration:none;">
+     WhatsApp 3006972596</a></p>
+</footer>
+
+</body>
+</html>
+
+
