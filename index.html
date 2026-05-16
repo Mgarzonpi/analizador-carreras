@@ -26,7 +26,6 @@
     line-height: 1.6;
   }
 
-  /* ── NAV ── */
   nav {
     display: flex;
     align-items: center;
@@ -58,7 +57,6 @@
   }
   .nav-btn:hover { filter: brightness(1.1); }
 
-  /* ── HERO ── */
   .hero {
     text-align: center;
     padding: 64px 24px 48px;
@@ -134,7 +132,6 @@
   }
   .btn-secondary:hover { background: #252A3A; }
 
-  /* ── PLATAFORMAS ── */
   .plataformas {
     display: flex;
     justify-content: center;
@@ -152,7 +149,6 @@
     font-weight: 500;
   }
 
-  /* ── SCREENSHOT ── */
   .screenshot-section {
     display: flex;
     justify-content: center;
@@ -206,7 +202,6 @@
     color: var(--dim);
   }
 
-  /* ── FEATURES ── */
   .section {
     max-width: 800px;
     margin: 0 auto;
@@ -250,7 +245,6 @@
     line-height: 1.5;
   }
 
-  /* ── PASOS ── */
   .steps {
     counter-reset: step;
   }
@@ -291,10 +285,10 @@
     color: var(--verde2);
   }
 
-  /* ── PRECIOS ── */
+  /* Tarjetas de planes con COP y USD */
   .precios-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 24px;
     margin-bottom: 32px;
   }
@@ -332,39 +326,41 @@
     white-space: nowrap;
   }
   .precio-periodo {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    font-weight: 800;
     color: var(--texto);
-    margin-bottom: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    margin-bottom: 8px;
   }
   .precio-valor {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--verde2);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
-  .precio-sub {
+  .precio-valor small {
     font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--dim);
+  }
+  .precio-usd {
+    font-size: 0.9rem;
     color: var(--dim);
     margin-bottom: 16px;
   }
-  .precio-ahorro {
-    font-size: 0.75rem;
-    color: var(--verde);
-    font-weight: 600;
-    margin-bottom: 12px;
+  .precio-desc {
+    font-size: 0.85rem;
+    color: var(--dim);
+    margin-bottom: 20px;
   }
   .precio-ia {
     background: rgba(0,200,83,0.15);
     border-radius: 30px;
-    padding: 5px 12px;
+    padding: 6px 14px;
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--verde2);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   .paypal-button form {
     margin: 0;
@@ -378,19 +374,20 @@
   .paypal-button input[type="image"]:hover {
     opacity: 0.9;
   }
+
   .precio-prueba {
     text-align: center;
     padding: 14px;
     background: rgba(0,200,83,0.08);
     border: 1px solid rgba(0,200,83,0.2);
     border-radius: 14px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--verde2);
     font-weight: 600;
     margin-top: 10px;
   }
 
-  /* ── METODOS PAGO ── */
+  /* Métodos de pago mejorados */
   .metodos-pago {
     background: var(--gris2);
     border: 1px solid #252A3A;
@@ -399,8 +396,8 @@
     margin-top: 32px;
   }
   .metodos-pago h3 {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
     text-align: center;
   }
   .pago-opciones {
@@ -411,38 +408,78 @@
   }
   .pago-item {
     background: var(--gris3);
-    padding: 18px 20px;
+    padding: 20px;
     border-radius: 16px;
     text-align: center;
     flex: 1;
-    min-width: 200px;
+    min-width: 260px;
   }
   .pago-item .moneda {
     font-weight: 700;
     color: var(--verde2);
-    margin-bottom: 8px;
-    font-size: 1rem;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
   }
   .pago-item .detalle {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--dim);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    line-height: 1.5;
   }
   .btn-wa {
     background: #25D366;
     color: #001F0F;
     font-weight: 700;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 30px;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    transition: filter 0.2s;
   }
   .btn-wa:hover {
     filter: brightness(0.95);
   }
+  .monto-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .monto-custom input {
+    background: var(--gris1);
+    border: 1px solid #252A3A;
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: var(--texto);
+    font-size: 1rem;
+    text-align: center;
+    width: 140px;
+  }
+  .monto-custom input:focus {
+    outline: none;
+    border-color: var(--verde);
+  }
+  .btn-paypal-custom {
+    background: #FFC439;
+    color: #001F0F;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    transition: filter 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-paypal-custom:hover {
+    filter: brightness(0.95);
+  }
 
-  /* ── FAQ ── */
   .faq-item {
     border-bottom: 1px solid #252A3A;
     padding: 16px 0;
@@ -459,7 +496,6 @@
     line-height: 1.6;
   }
 
-  /* ── CTA FINAL ── */
   .cta {
     text-align: center;
     padding: 48px 24px 64px;
@@ -501,7 +537,7 @@
     .hero-btns { flex-direction: column; align-items: center; }
     .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
     .precios-grid { gap: 20px; }
-    .precio-card { padding: 20px 16px; }
+    .precio-card { padding: 24px 16px; }
   }
 </style>
 </head>
@@ -540,8 +576,8 @@
       <div class="overlay-bar-green"></div>
       <div class="overlay-body">
         <div class="overlay-title green">✅ ACEPTA</div>
-        <div class="overlay-row"><span>$/km</span><span style="color:#2E7D32">$1.946/km</span></div>
-        <div class="overlay-row"><span>$/hora</span><span style="color:#2E7D32">$46.700/h</span></div>
+        <div class="overlay-row"><span>$/km</span><span>$1.946/km</span></div>
+        <div class="overlay-row"><span>$/hora</span><span>$46.700/h</span></div>
       </div>
     </div>
     <div class="phone-label">Carrera excelente 🟢</div>
@@ -552,10 +588,10 @@
       <div class="overlay-bar-yellow"></div>
       <div class="overlay-body">
         <div class="overlay-title yellow">🟡 CONSIDERA</div>
-        <div class="overlay-row"><span>$/km</span><span style="color:#E65100">$1.226/km</span></div>
-        <div class="overlay-row"><span>$/hora</span><span style="color:#E65100">$24.030/h</span></div>
+        <div class="overlay-row"><span>$/km</span><span>$1.226/km</span></div>
+        <div class="overlay-row"><span>$/hora</span><span>$24.030/h</span></div>
         <div class="overlay-row"><span>Neto (-11%)</span><span>$12.015</span></div>
-        <div class="overlay-row"><span>💡 Pide</span><span style="color:#E65100">COL$14.500</span></div>
+        <div class="overlay-row"><span>💡 Sugerencia</span><span>$14.500</span></div>
       </div>
     </div>
     <div class="phone-label">InDrive con sugerencia 🟡</div>
@@ -566,8 +602,8 @@
       <div class="overlay-bar-red"></div>
       <div class="overlay-body">
         <div class="overlay-title red">❌ RECHAZA</div>
-        <div class="overlay-row"><span>$/km</span><span style="color:#C62828">$718/km</span></div>
-        <div class="overlay-row"><span>$/hora</span><span style="color:#C62828">$11.200/h</span></div>
+        <div class="overlay-row"><span>$/km</span><span>$718/km</span></div>
+        <div class="overlay-row"><span>$/hora</span><span>$11.200/h</span></div>
       </div>
     </div>
     <div class="phone-label">Carrera mala 🔴</div>
@@ -579,164 +615,121 @@
   <h2 class="section-title">¿Qué hace la app?</h2>
   <p class="section-sub">Analiza la pantalla de Uber, DiDi o InDrive automáticamente y te dice si la carrera vale la pena.</p>
   <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <div class="feature-title">Análisis en 1 segundo</div>
-      <div class="feature-desc">Lee la pantalla automáticamente y muestra el resultado en 1 segundo — sin tocar nada.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💰</div>
-      <div class="feature-title">Tarifa por km real</div>
-      <div class="feature-desc">Calcula la tarifa incluyendo el km que recorres para recoger al pasajero — no solo el viaje.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <div class="feature-title">Tu meta por hora</div>
-      <div class="feature-desc">Configura cuánto quieres ganar por hora y la app te avisa si la carrera cumple o no.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">💡</div>
-      <div class="feature-title">Sugerencia InDrive</div>
-      <div class="feature-desc">Para InDrive calcula cuánto debes pedir para cumplir tu meta, descontando la comisión del 11%.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🚫</div>
-      <div class="feature-title">Zonas prohibidas</div>
-      <div class="feature-desc">Configura zonas peligrosas o de baja demanda — la app rechaza automáticamente esas carreras.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚙️</div>
-      <div class="feature-title">100% configurable</div>
-      <div class="feature-desc">Ajusta tarifas mínimas, meta por hora, zonas preferidas en mañana y tarde/noche.</div>
-    </div>
+    <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Análisis en 1 segundo</div><div class="feature-desc">Resultado instantáneo en pantalla, sin interrupciones.</div></div>
+    <div class="feature-card"><div class="feature-icon">💰</div><div class="feature-title">Tarifa real por km</div><div class="feature-desc">Incluye el kilómetro de recogida, no solo el viaje.</div></div>
+    <div class="feature-card"><div class="feature-icon">🎯</div><div class="feature-title">Tu meta por hora</div><div class="feature-desc">Personaliza tu objetivo y la app lo evalúa automáticamente.</div></div>
+    <div class="feature-card"><div class="feature-icon">💡</div><div class="feature-title">Sugerencia InDrive</div><div class="feature-desc">Te dice cuánto pedir para alcanzar tu meta, restando comisión.</div></div>
+    <div class="feature-card"><div class="feature-icon">🚫</div><div class="feature-title">Zonas prohibidas</div><div class="feature-desc">Evita carreras en áreas inseguras o de baja demanda.</div></div>
+    <div class="feature-card"><div class="feature-icon">⚙️</div><div class="feature-title">100% configurable</div><div class="feature-desc">Ajusta todo a tu estilo de trabajo.</div></div>
   </div>
 </div>
 
 <!-- CÓMO INSTALAR -->
 <div class="section" id="descargar">
   <h2 class="section-title">Cómo instalar</h2>
-  <p class="section-sub">La app no está en Play Store — se instala directamente en 3 pasos.</p>
-
+  <p class="section-sub">La app no está en Play Store — se instala directamente en pocos pasos.</p>
   <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <h3>Descarga el APK</h3>
-        <p>Presiona el botón de descarga. El archivo <code>.apk</code> se guardará en tu carpeta de Descargas.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <h3>Permite instalar fuentes desconocidas</h3>
-        <p>Android pedirá permiso para instalar apps de fuentes externas. Acepta → instala el archivo APK desde Descargas.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <h3>Activa los permisos en la app</h3>
-        <p>Al abrir la app, activa el <strong>Overlay</strong> (ventana flotante). Luego presiona <strong>Iniciar Análisis</strong> y acepta el permiso de captura de pantalla.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-content">
-        <h3>Abre Uber, DiDi o InDrive</h3>
-        <p>Cuando llegue una solicitud, el análisis aparece automáticamente en la esquina superior de la pantalla.</p>
-      </div>
-    </div>
+    <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Descarga el APK</h3><p>Haz clic en el botón de descarga. El archivo <code>.apk</code> se guardará en tu carpeta de Descargas.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Permite fuentes desconocidas</h3><p>Android te pedirá autorización para instalar aplicaciones externas. Acepta e instala.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Activa los permisos</h3><p>Dentro de la app, activa el <strong>Overlay</strong> (ventana flotante) y acepta el permiso de captura de pantalla.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-content"><h3>¡Empieza a trabajar!</h3><p>Abre Uber, DiDi o InDrive y las carreras se analizarán automáticamente.</p></div></div>
   </div>
-
-  <a href="https://github.com/Mgarzonpi/analizador-carreras/releases/download/v1.0.0/AnalizadorCarreras.apk" class="btn-primary"
-     style="width:100%;justify-content:center;margin-top:24px;font-size:1rem;">
+  <a href="https://github.com/Mgarzonpi/analizador-carreras/releases/download/v1.0.0/AnalizadorCarreras.apk" class="btn-primary" style="width:100%;justify-content:center;margin-top:24px;font-size:1rem;">
     📲 Descargar APK — Analizador Carreras v3.0.1
   </a>
-
   <div class="apk-warning">
-    <strong>⚠️ Nota de seguridad:</strong> Android mostrará una advertencia al instalar porque la app no está en Play Store. Esto es normal para apps que se distribuyen directamente. La app <strong>no accede a tus datos personales</strong> — solo lee la pantalla para detectar solicitudes de carreras.
+    <strong>⚠️ Nota de seguridad:</strong> La advertencia de instalación es normal al no estar en Play Store. La app <strong>no accede a tus datos personales</strong> — solo lee la pantalla para detectar solicitudes de carreras.
   </div>
 </div>
 
 <!-- PRECIOS -->
 <div class="section" id="precios">
   <h2 class="section-title">Planes</h2>
-  <p class="section-sub">Comienza gratis 3 días — sin tarjeta ni registro.</p>
+  <p class="section-sub">Prueba gratuita de 3 días. Luego elige el plan que mejor se adapte a ti.</p>
 
   <div class="precios-grid">
-    <!-- 1 MES - 5 USD -->
+    <!-- 1 MES -->
     <div class="precio-card">
-      <div class="precio-periodo">1 Mes</div>
-      <div class="precio-valor">$10.000</div>
-      <div class="precio-sub">COP · $5 USD</div>
-      <div class="precio-ahorro">$10.000 / mes</div>
-      <div class="precio-ia">🤖 Incluye IA</div>
+      <div class="precio-periodo">1 MES</div>
+      <div class="precio-valor">$10.000 <small>COP</small></div>
+      <div class="precio-usd">(~5 USD)</div>
+      <div class="precio-desc">Pago único mensual</div>
+      <div class="precio-ia">🤖 IA incluida</div>
       <div class="paypal-button">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick" />
           <input type="hidden" name="hosted_button_id" value="JYRRRZB4CJRPJ" />
           <input type="hidden" name="currency_code" value="USD" />
-          <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - Pago seguro" alt="Comprar ahora" />
+          <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="Pagar con PayPal" alt="Comprar ahora" />
         </form>
       </div>
     </div>
 
-    <!-- 2 MESES - 8 USD -->
+    <!-- 2 MESES -->
     <div class="precio-card">
-      <div class="precio-periodo">2 Meses</div>
-      <div class="precio-valor">$18.000</div>
-      <div class="precio-sub">COP · $8 USD</div>
-      <div class="precio-ahorro">Ahorras $2.000 💛</div>
-      <div class="precio-ia">🤖 Incluye IA</div>
+      <div class="precio-periodo">2 MESES</div>
+      <div class="precio-valor">$18.000 <small>COP</small></div>
+      <div class="precio-usd">(~8 USD) · Ahorro de $2 USD</div>
+      <div class="precio-desc">Pago único</div>
+      <div class="precio-ia">🤖 IA incluida</div>
       <div class="paypal-button">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick" />
           <input type="hidden" name="hosted_button_id" value="7U6A7A5LLQP24" />
           <input type="hidden" name="currency_code" value="USD" />
-          <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - Pago seguro" alt="Comprar ahora" />
+          <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="Pagar con PayPal" alt="Comprar ahora" />
         </form>
       </div>
     </div>
 
-    <!-- 3 MESES - 10 USD (DESTACADO) -->
+    <!-- 3 MESES (DESTACADO) -->
     <div class="precio-card destacado">
       <div class="precio-badge">⭐ MEJOR VALOR + IA PRO ⭐</div>
-      <div class="precio-periodo">3 Meses</div>
-      <div class="precio-valor">$20.000</div>
-      <div class="precio-sub">COP · $10 USD</div>
-      <div class="precio-ahorro">Ahorras $10.000 🎉</div>
+      <div class="precio-periodo">3 MESES</div>
+      <div class="precio-valor">$20.000 <small>COP</small></div>
+      <div class="precio-usd">(~10 USD) · Ahorro de $5 USD</div>
+      <div class="precio-desc">Pago único</div>
       <div class="precio-ia">🤖 IA Avanzada · Detección más precisa · Sugerencias inteligentes</div>
       <div class="paypal-button">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick" />
           <input type="hidden" name="hosted_button_id" value="54ZYNQLRWJBRW" />
           <input type="hidden" name="currency_code" value="USD" />
-          <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - Pago seguro" alt="Comprar ahora" />
+          <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="Pagar con PayPal" alt="Comprar ahora" />
         </form>
       </div>
     </div>
   </div>
 
   <div class="precio-prueba">
-    🟡 3 días de prueba gratuita — sin pagar nada
+    🟡 3 días de prueba gratuita — sin necesidad de tarjeta
   </div>
 
-  <!-- MÉTODOS DE PAGO: Nequi y PayPal -->
+  <!-- MÉTODOS DE PAGO -->
   <div class="metodos-pago">
-    <h3>💰 Métodos de pago aceptados</h3>
+    <h3>💰 Métodos de pago</h3>
     <div class="pago-opciones">
+      <!-- Pago local en COP -->
       <div class="pago-item">
         <div class="moneda">🇨🇴 Pesos Colombianos (COP)</div>
-        <div class="detalle">Nequi / Llave: <strong>3006972596</strong></div>
+        <div class="detalle">Paga por <strong>Nequi</strong> a la llave <strong>3006972596</strong><br>Luego envía el comprobante por WhatsApp para activar tu licencia.</div>
         <a href="https://wa.me/573006972596?text=Hola!%20Quiero%20activar%20el%20Analizador%20de%20Carreras." class="btn-wa">
           📤 Enviar comprobante por WhatsApp
         </a>
       </div>
+
+      <!-- Pago internacional con monto personalizable -->
       <div class="pago-item">
-        <div class="moneda">🌎 Dólares (USD) / Internacional</div>
-        <div class="detalle">PayPal · Tarjeta de crédito/débito</div>
-        <div class="detalle" style="margin-top:8px; font-size:0.7rem;">
-          Selecciona el plan directamente con los botones de arriba ⬆️
+        <div class="moneda">🌎 Internacional (USD)</div>
+        <div class="detalle">Paga con PayPal o tarjeta de crédito/débito.<br>Usa los botones de arriba o ingresa un monto personalizado:</div>
+        <div class="monto-custom">
+          <input type="number" id="customAmount" placeholder="Monto en USD" step="1" min="1" value="10">
+          <button id="customPaypalBtn" class="btn-paypal-custom">
+            💳 Pagar con PayPal (monto personalizado)
+          </button>
+        </div>
+        <div class="detalle" style="margin-top:12px; font-size:0.7rem;">
+          Los planes en USD tienen los precios fijos: $5, $8 y $10 USD.
         </div>
       </div>
     </div>
@@ -746,38 +739,19 @@
 <!-- FAQ -->
 <div class="section">
   <h2 class="section-title">Preguntas frecuentes</h2>
-  <div class="faq-item">
-    <div class="faq-q">¿Funciona con Uber, DiDi e InDrive al mismo tiempo?</div>
-    <div class="faq-a">Sí. La app detecta automáticamente cuál plataforma está al frente y analiza esa carrera. Puedes tener las tres apps abiertas.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">¿La app puede ver mis datos personales o contraseñas?</div>
-    <div class="faq-a">No. La app solo captura la pantalla para leer los datos de la solicitud de carrera (valor, distancia, tiempo). No accede a contraseñas, mensajes ni información bancaria.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">¿Consume mucha batería?</div>
-    <div class="faq-a">La captura de pantalla consume algo de batería. Se recomienda conectar el celular al cargador del moto mientras trabajas.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">¿Qué pasa si desinstalo y reinstalo la app?</div>
-    <div class="faq-a">Tu período de prueba no se reinicia. La app usa el ID único de tu dispositivo guardado en la nube para rastrear el tiempo de prueba.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">¿En qué celulares funciona?</div>
-    <div class="faq-a">Android 8.0 o superior. No disponible para iPhone.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">¿Cómo cancelo la suscripción?</div>
-    <div class="faq-a">Simplemente no renuevas. No hay cobros automáticos — cada mes pagas manualmente si quieres continuar.</div>
-  </div>
+  <div class="faq-item"><div class="faq-q">¿Funciona con Uber, DiDi e InDrive al mismo tiempo?</div><div class="faq-a">Sí, la app detecta automáticamente qué plataforma está activa y analiza esa carrera.</div></div>
+  <div class="faq-item"><div class="faq-q">¿La app puede ver mis datos personales o contraseñas?</div><div class="faq-a">No. Solo captura la pantalla para leer valor, distancia y tiempo. No accede a información sensible.</div></div>
+  <div class="faq-item"><div class="faq-q">¿Consume mucha batería?</div><div class="faq-a">El análisis es eficiente, pero se recomienda tener el móvil conectado al cargador durante la jornada.</div></div>
+  <div class="faq-item"><div class="faq-q">¿Qué pasa si desinstalo la app?</div><div class="faq-a">Tu período de prueba no se reinicia. El dispositivo está registrado en la nube.</div></div>
+  <div class="faq-item"><div class="faq-q">¿En qué celulares funciona?</div><div class="faq-a">Android 8.0 o superior. No disponible para iOS.</div></div>
+  <div class="faq-item"><div class="faq-q">¿Cómo cancelo la suscripción?</div><div class="faq-a">No hay renovación automática. Pagas manualmente cada vez que quieres seguir usando la app.</div></div>
 </div>
 
 <!-- CTA FINAL -->
 <div class="cta">
   <h2>Empieza gratis hoy 🚀</h2>
-  <p>3 días de prueba gratuita. Sin tarjeta, sin registro.</p>
-  <a href="https://github.com/Mgarzonpi/analizador-carreras/releases/download/v1.0.0/AnalizadorCarreras.apk" class="btn-primary"
-     style="font-size:1rem;">
+  <p>3 días de prueba gratuita. Sin compromiso.</p>
+  <a href="https://github.com/Mgarzonpi/analizador-carreras/releases/download/v1.0.0/AnalizadorCarreras.apk" class="btn-primary" style="font-size:1rem;">
     📲 Descargar APK gratis
   </a>
 </div>
@@ -788,5 +762,48 @@
   <p>Soporte: <a href="https://wa.me/573006972596" style="color:var(--verde2);text-decoration:none;">WhatsApp 3006972596</a></p>
 </footer>
 
+<script>
+  // Botón de PayPal con monto personalizado
+  document.getElementById('customPaypalBtn').addEventListener('click', function() {
+    let amount = document.getElementById('customAmount').value;
+    if (!amount || amount <= 0) {
+      alert('Por favor ingresa un monto válido en dólares (USD)');
+      return;
+    }
+    // Crear formulario dinámico para PayPal
+    var form = document.createElement('form');
+    form.method = 'post';
+    form.action = 'https://www.paypal.com/cgi-bin/webscr';
+    form.target = '_top';
+    var hiddenCmd = document.createElement('input');
+    hiddenCmd.type = 'hidden';
+    hiddenCmd.name = 'cmd';
+    hiddenCmd.value = '_xclick';
+    form.appendChild(hiddenCmd);
+    var hiddenBusiness = document.createElement('input');
+    hiddenBusiness.type = 'hidden';
+    hiddenBusiness.name = 'business';
+    // IMPORTANTE: Reemplaza con tu correo de PayPal
+    hiddenBusiness.value = 'marlongarzon103@gmail.com';  
+    form.appendChild(hiddenBusiness);
+    var hiddenAmount = document.createElement('input');
+    hiddenAmount.type = 'hidden';
+    hiddenAmount.name = 'amount';
+    hiddenAmount.value = amount;
+    form.appendChild(hiddenAmount);
+    var hiddenCurrency = document.createElement('input');
+    hiddenCurrency.type = 'hidden';
+    hiddenCurrency.name = 'currency_code';
+    hiddenCurrency.value = 'USD';
+    form.appendChild(hiddenCurrency);
+    var hiddenItem = document.createElement('input');
+    hiddenItem.type = 'hidden';
+    hiddenItem.name = 'item_name';
+    hiddenItem.value = 'Analizador Carreras - Pago personalizado';
+    form.appendChild(hiddenItem);
+    document.body.appendChild(form);
+    form.submit();
+  });
+</script>
 </body>
 </html>
