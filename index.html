@@ -363,7 +363,7 @@
     margin-bottom: 24px;
   }
   .paypal-button form {
-    margin: 0;
+    margin: 0 0 10px 0;
   }
   .paypal-button input[type="image"] {
     width: 100%;
@@ -373,6 +373,23 @@
   }
   .paypal-button input[type="image"]:hover {
     opacity: 0.9;
+  }
+  .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #25D366;
+    color: #001F0F;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: filter 0.2s;
+  }
+  .whatsapp-link:hover {
+    filter: brightness(0.95);
   }
 
   .precio-prueba {
@@ -654,7 +671,7 @@
       <div class="precio-valor">$10.000 <small>COP</small></div>
       <div class="precio-usd">5 USD</div>
       <div class="precio-desc">Pago único mensual</div>
-      
+      <div class="precio-ia">🤖 IA incluida</div>
       <div class="paypal-button">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick" />
@@ -663,15 +680,18 @@
           <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="Pagar con PayPal" alt="Comprar ahora" />
         </form>
       </div>
+      <a href="https://wa.me/573006972596?text=¡Hola!%20Acabo%20de%20pagar%20el%20plan%20de%201%20mes%20(5%20USD)%20por%20PayPal.%20Mi%20correo%20es:%20" class="whatsapp-link" target="_blank">
+        📤 Enviar comprobante por WhatsApp
+      </a>
     </div>
 
     <!-- 2 MESES -->
     <div class="precio-card">
       <div class="precio-periodo">2 MESES</div>
       <div class="precio-valor">$18.000 <small>COP</small></div>
-      <div class="precio-usd"> 8 USD</div>
+      <div class="precio-usd">8 USD</div>
       <div class="precio-desc">Pago único</div>
-      
+      <div class="precio-ia">🤖 IA incluida</div>
       <div class="paypal-button">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick" />
@@ -680,6 +700,9 @@
           <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="Pagar con PayPal" alt="Comprar ahora" />
         </form>
       </div>
+      <a href="https://wa.me/573006972596?text=¡Hola!%20Acabo%20de%20pagar%20el%20plan%20de%202%20meses%20(8%20USD)%20por%20PayPal.%20Mi%20correo%20es:%20" class="whatsapp-link" target="_blank">
+        📤 Enviar comprobante por WhatsApp
+      </a>
     </div>
 
     <!-- 3 MESES (DESTACADO) -->
@@ -698,6 +721,9 @@
           <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="Pagar con PayPal" alt="Comprar ahora" />
         </form>
       </div>
+      <a href="https://wa.me/573006972596?text=¡Hola!%20Acabo%20de%20pagar%20el%20plan%20de%203%20meses%20(10%20USD)%20por%20PayPal.%20Mi%20correo%20es:%20" class="whatsapp-link" target="_blank">
+        📤 Enviar comprobante por WhatsApp
+      </a>
     </div>
   </div>
 
@@ -729,16 +755,16 @@
           </button>
         </div>
         <div class="detalle" style="margin-top:12px; font-size:0.7rem;">
-          Los planes en USD tienen los precios fijos: $5, $8 y $10 USD.
+          Los planes en USD tienen los precios fijos: $5, $8 y $10 USD.<br>
+          <strong>⚠️ Después de pagar, recuerda enviar el comprobante por WhatsApp para activar tu licencia.</strong>
         </div>
+        <a href="https://wa.me/573006972596?text=¡Hola!%20Acabo%20de%20realizar%20un%20pago%20personalizado%20por%20PayPal.%20Mi%20correo%20es:%20" class="whatsapp-link" target="_blank" style="margin-top:12px;">
+          📤 Enviar comprobante por WhatsApp
+        </a>
       </div>
     </div>
   </div>
 </div>
-<a href="https://wa.me/573006972596?text=Hola!%20Quiero%20activar%20el%20Analizador%20de%20Carreras." class="btn-wa">
-          📤 Enviar comprobante por WhatsApp
-        </a>
-      </div>
 
 <!-- FAQ -->
 <div class="section">
@@ -767,13 +793,16 @@
 </footer>
 
 <script>
-  // Botón de PayPal con monto personalizado
+  // Botón de PayPal con monto personalizado + recordatorio de comprobante
   document.getElementById('customPaypalBtn').addEventListener('click', function() {
     let amount = document.getElementById('customAmount').value;
     if (!amount || amount <= 0) {
       alert('Por favor ingresa un monto válido en dólares (USD)');
       return;
     }
+    // Mostrar recordatorio antes de redirigir a PayPal
+    alert('✅ Serás redirigido a PayPal para completar el pago.\n\n⚠️ IMPORTANTE: Después de pagar, regresa a esta página y haz clic en "Enviar comprobante por WhatsApp" para activar tu licencia.');
+    
     // Crear formulario dinámico para PayPal
     var form = document.createElement('form');
     form.method = 'post';
@@ -787,8 +816,7 @@
     var hiddenBusiness = document.createElement('input');
     hiddenBusiness.type = 'hidden';
     hiddenBusiness.name = 'business';
-    // IMPORTANTE: Reemplaza con tu correo de PayPal
-    hiddenBusiness.value = 'marlongarzon103@gmail.com';  
+    hiddenBusiness.value = 'marlongarzon103@gmail.com';  // Tu correo de PayPal
     form.appendChild(hiddenBusiness);
     var hiddenAmount = document.createElement('input');
     hiddenAmount.type = 'hidden';
